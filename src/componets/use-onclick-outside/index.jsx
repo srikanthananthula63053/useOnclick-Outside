@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import UseOnClickOutSideTest from "./test";
 
 
 export default function UseOnClickOutSide() {
     const [showContent, setShowContent] = useState(false);
+    const ref = useRef();
+    UseOnClickOutSideTest(ref, () => setShowContent(false))
     return (
-        <div>
+        <div ref={ref}>
             {
                 showContent ? <div>
                     <h1>This is a random content</h1>
@@ -12,7 +15,7 @@ export default function UseOnClickOutSide() {
 
                     </p>
                 </div>
-                    : <button onClick={setShowContent(true)}>show content</button>
+                    : <button onClick={() => setShowContent(true)}>show content</button>
             }
         </div>
     )
